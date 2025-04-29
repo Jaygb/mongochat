@@ -17,5 +17,4 @@ const userSchema = new mongoose.Schema(
   },
 );
 
-// Set MongoDB collection name to 'usr_user'
 module.exports = mongoose.model('User', userSchema, 'usr_user');

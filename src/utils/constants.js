@@ -16,9 +16,20 @@ const kMessages = {
 
   // ==========================   user ===========================
   USER_ADDED: 'User added successfully',
+  GET_USER: 'Users Fetched successfully',
+  UPDATE_USER: 'User updated successfully',
+  DELETE_USER: 'User deleted successfully',
   LOGIN_SUCCESS: 'Login successfully',
   EMAIL_SENT: 'Email sent successfully',
   SET_PASSWORD: 'Password set successfully',
+
+  // ==========================   chat ===========================
+  CONVERSATION_CREATED: 'Conversation created successfully',
+  CONVERSATIONS_FETCHED: 'Conversations fetched successfully',
+  CONVERSATION_FETCHED: 'Conversation details fetched successfully',
+  MESSAGE_SENT: 'Message sent successfully',
+  MESSAGES_FETCHED: 'Messages fetched successfully',
+  MESSAGE_READ: 'Message marked as read',
 };
 
 module.exports = {
