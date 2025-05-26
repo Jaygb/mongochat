@@ -5,7 +5,6 @@ const apiRouter = require('./router');
 const config = require('./utils/config');
 const { kMessages, kStatusCodes } = require('./utils/constants');
 const dbConnect = require('../src/db/dbconnect');
-const SocketService = require('./services/socketService');
 
 const app = express();
 dbConnect();
@@ -27,12 +26,7 @@ app.use((_, res) => {
   });
 });
 
-const server = http.createServer(app);
-
-const socketService = new SocketService(server);
-global.socketService = socketService;
-
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
 

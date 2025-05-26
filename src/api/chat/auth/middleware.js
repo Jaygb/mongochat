@@ -36,7 +36,7 @@ class AuthMiddleware {
           message: 'User is unauthorized',
         });
       }
-
+console.log("verify ::",verify);
       req.userId = verify.userId;
       next();
     } catch (error) {

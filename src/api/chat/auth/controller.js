@@ -10,33 +10,11 @@ class AuthController {
     this._service = service; 
   }
 
-  addUser = async (req, res) => {
-    try {
-      res.status(kStatusCodes.BAD_REQUEST);
-
-      await this._service.addUser(req);
-
-      return res.status(kStatusCodes.OK).json({
-        status: 1,
-        message: kMessages.USER_ADDED,
-      });
-    } catch (error) {
-      console.log(error);
-      return res.json({
-        status: 0,
-        message: getErrorMessage(error),
-      });
-    }
-  };
-
   login = async (req, res) => {
     try {
       res.status(kStatusCodes.NOT_FOUND);
 
-      const login = await this._service.login(
-        req.body.username,
-        req.body.password,
-      );
+      const login = await this._service.login(req);
 
       return res.status(kStatusCodes.OK).json({
         status: 1,

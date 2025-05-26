@@ -22,29 +22,34 @@ class AuthService {
     return token;
   }
 
-  async login(username, password) {
+  async login(req) {
+    const { username, password } = req.body;
     const checkUser = await this._repo.isUserExists(username);
-
-    if (!checkUser || !checkUser.isactive) {
+    console.log('checkUser :', checkUser);
+    if (!checkUser) {
       throw 'User with this email not found';
     }
 
-    if (checkUser[0].password == null) {
+    if (checkUser.password == null) {
       throw 'Please set your password';
     }
 
     const comparePassword = await comparePasswords(
-      checkUser[0].password,
+      checkUser.password,
       password,
     );
 
     if (comparePassword == false) {
       throw 'Invalid Password.';
     }
+    console.log('object ::', checkUser);
+    const token = await this.generateToken(checkUser._id, '24hour');
 
-    const token = await this.generateToken(checkUser[0]._id, '24hour');
+    const user = checkUser.toObject();
+    delete user.password;
 
     let obj = {
+      ...user,
       token,
     };
 
@@ -53,12 +58,12 @@ class AuthService {
 
   async forgotpassword(email) {
     const checkUser = await this._repo.isUserExists(email);
-
+console.log("checkUser ::",checkUser);
     if (checkUser.length == 0) {
       throw 'User with this email not found';
     }
 
-    const token = await this.generateToken(checkUser[0]._id, '24hour');
+    const token = await this.generateToken(checkUser._id, '24hour');
 
     const url = config.urls.admin + '/setpassword?token=' + token;
 

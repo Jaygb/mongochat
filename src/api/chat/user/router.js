@@ -3,8 +3,7 @@ const UserController = require('./controller');
 const UserService = require('./service');
 const { 
   createUserSchema, 
-  updateUserSchema,
-  getUserByIdSchema 
+  updateUserSchema
 } = require('./validation');
 const { commonValidationChecker, queryValidationChecker } = require('../../../utils/validationChecker');
 const authMiddleware = require('../auth/index').authMiddleware;
@@ -33,7 +32,6 @@ class UserRouter {
     router.get(
       '/viewById',
       authMiddleware.isAuthenticated,
-      queryValidationChecker(getUserByIdSchema),
       this._controller.getUserById
     );
 

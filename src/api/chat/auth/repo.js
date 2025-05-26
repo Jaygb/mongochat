@@ -1,11 +1,11 @@
-const User = require('../../models/user');
+const User = require('../../../models/user');
 
 class AuthRepo {
   constructor() {}
 
   // Check if a user exists by username
   isUserExists = async (username) => {
-    return await User.findOne({ username });
+    return await User.findOne({ username, isactive: true });
   };
 
   // Set password for a user

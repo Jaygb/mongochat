@@ -27,7 +27,7 @@ class UserController {
 
   getAllUsers = async (req, res) => {
     try {
-      const users = await this._service.getAllUsers();
+      const users = await this._service.getAllUsers(req);
 
       return res.status(kStatusCodes.OK).json({
         status: 1,
@@ -45,7 +45,7 @@ class UserController {
 
   getUserById = async (req, res) => {
     try {
-      const user = await this._service.getUserById(req.query.id);
+      const user = await this._service.getUserById(req);
 
       return res.status(kStatusCodes.OK).json({
         status: 1,
